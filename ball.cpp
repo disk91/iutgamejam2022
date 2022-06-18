@@ -80,13 +80,13 @@ void draw_ball() {
   
 }
 
-void moveBall(bool collisionY, bool collisionX, int colType) {
+bool moveBall(bool collisionY, bool collisionX, int colType) {
   // screen collision
   if ( theBall.x <= 0 ) collisionX = true;
   if ( theBall.x >= (SCREEN_X-ball_width) ) collisionX = true;
   if ( theBall.y <= BRIQUE_OFFSET_Y ) collisionY = true;
 
-  if ( theBall.y >= SCREEN_Y-ball_width ) collisionY = true;
+  if ( theBall.y >= SCREEN_Y-ball_width ) return true;
 
   
   if ( collisionX ) {
@@ -105,4 +105,5 @@ void moveBall(bool collisionY, bool collisionX, int colType) {
   }
 
   setBallPos(theBall.x+theBall.dx, theBall.y+theBall.dy);
+  return false;
 }
