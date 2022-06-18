@@ -19,13 +19,6 @@ void initScreen() {
   pinMode(WIO_5S_PRESS, INPUT_PULLUP);   
 }
 
-/*
- * barre_old[BAR_LINE_BLOC]  = { 0 };
-extern uint8_t barre_new[BAR_LINE_BLOC]  = { 0 };
-extern uint8_t briques_old[BRIQUE_Y][BRIQUE_X] = { 0 };
-extern uint8_t briques_new[BRIQUE_Y][BRIQUE_X] = { 0 };
- */
-
 
 void drawBarSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
   switch ( sprite ) {
@@ -41,15 +34,6 @@ void drawBarSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
         draw_barreMiddle(offsetX, offsetY);
         break;
   }
-
-  /*
-  if ( sprite != 0 ) {
-    for ( int y = offsetY ; y < offsetY + BAR_BLOC_SZY ; y++ ) {
-      for ( int x = offsetX ; x < offsetX + BAR_BLOC_SZ ; x++ ) {
-         tft.drawPixel(x,y,TFT_WHITE);
-      }
-    }
-  }*/
 }
 
 void drawBriqueSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {

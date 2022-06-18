@@ -1,4 +1,4 @@
-#include "arduino.h"
+#include "Arduino.h"
 #include "game.h"
 #include "ball.h"
 
@@ -19,13 +19,18 @@ typedef struct ball_s {
 ball_t theBall;
 
 void initBall() {
+  theBall.dy = 0;
+  theBall.dx = 0;
+  setBallPos((SCREEN_X/2)-ball_width/2,BAR_OFFSET_Y-ball_height-1);
+}
+
+void startBall() {
   theBall.dy = -4;
   if ( random(2) == 0 ) {
     theBall.dx = -4;
   } else {
     theBall.dx = 4;
-  }
-  setBallPos((SCREEN_X/2)-ball_width/2,BAR_OFFSET_Y-ball_height);
+  }  
 }
 
 void setBallPos(uint16_t x, uint16_t y) {
@@ -36,6 +41,15 @@ void setBallPos(uint16_t x, uint16_t y) {
   theBall.x = x;
   theBall.y = y;
 }
+
+uint16_t getX() {
+  return theBall.x;
+}
+
+uint16_t getY() {
+  return theBall.y;
+}
+
 
 void clear_ball() {
   if ( theBall.px == 0xFFFF ) return; // for the first pass
@@ -66,7 +80,7 @@ void draw_ball() {
   
 }
 
-void moveBall(bool collisionY, bool collisionX) {
+void moveBall(bool collisionY, bool collisionX, int colType) {
   // screen collision
   if ( theBall.x <= 0 ) collisionX = true;
   if ( theBall.x >= (SCREEN_X-ball_width) ) collisionX = true;
@@ -81,5 +95,14 @@ void moveBall(bool collisionY, bool collisionX) {
   if ( collisionY ) {
     theBall.dy *= -1;
   }
+
+  if ( colType == 1 ) {
+    theBall.dx --;
+  }
+
+  if ( colType == 2 ) {
+    theBall.dx ++;
+  }
+
   setBallPos(theBall.x+theBall.dx, theBall.y+theBall.dy);
 }
