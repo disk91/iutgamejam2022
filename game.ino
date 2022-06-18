@@ -9,6 +9,7 @@ uint8_t briques_new[BRIQUE_Y][BRIQUE_X] = { 0 };
 void setup() {
   // put your setup code here, to run once:
   initScreen();
+  initBall();
 }
 
 
@@ -26,6 +27,7 @@ void loop() {
     barre_new[i] = 1;
   }
 
+
 /*
   bzero(briques_new,BRIQUE_X*BRIQUE_Y);
   uint8_t *p =  (uint8_t *)briques_new;
@@ -36,8 +38,12 @@ void loop() {
   */
   bcopy(levels[0],briques_new,BRIQUE_X*BRIQUE_Y);
 
-
+  clear_ball();
   redrawScreen();
+  moveBall(false, false);
+  //setBallPos(100+random(100)-50, 120+random(200)-100);
+  draw_ball();
+
   
   if ( x < (BAR_LINE_BLOC-barSz) && dir == 0) x++;
   if ( x == (BAR_LINE_BLOC-barSz) && dir == 0 ) { x--; dir = 1; }
@@ -48,5 +54,7 @@ void loop() {
   bcopy(briques_new,briques_old,BRIQUE_X*BRIQUE_Y);
   if ( briqueOff == BRIQUE_X*BRIQUE_Y ) briqueOff = 0;
   briqueOff++;
+
+
   delay(20);
 }

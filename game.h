@@ -32,6 +32,11 @@ extern TFT_eSPI tft;
 void initScreen();
 void redrawScreen();
 
+void initBall();
 void draw_ball();
+void setBallPos(uint16_t x, uint16_t y);
+void clear_ball();
+void draw_ball();
+void moveBall(bool collisionY, bool collisionX);
 
 #endif __GAME_H__
