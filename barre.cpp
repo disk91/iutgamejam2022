@@ -8,6 +8,11 @@ typedef struct barre_s{
 
 barre_t uneBarre;
 
+void resetBarre() {
+  uneBarre.debut = (BAR_LINE_BLOC/2)-(BAR_SIZE/2);
+  uneBarre.taille = BAR_SIZE;
+}
+
 void initialiseBarre(){
   int nbBlockMilieu = BAR_SIZE - 2;
   

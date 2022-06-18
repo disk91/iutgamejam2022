@@ -1,5 +1,5 @@
-static unsigned int width = 11;
-static unsigned int height = 11;
+static unsigned int c_width = 11;
+static unsigned int c_height = 11;
 
 /*  Call this macro repeatedly.  After each use, the pixel data can be extracted  */
 
@@ -10,7 +10,7 @@ pixel[2] = ((((data[2] - 33) & 0x3) << 6) | ((data[3] - 33))); \
 data += 4; \
 }
 
-static char *header_data =
+static char *coeur_data =
   "!0]!!0]!!0]!!0]!!0]!!0]!!0]!!0]!!0]!!0]!!0]!!0]!!0]!DBM*E\"A*!0]!"
   "!0]!!0]!E\"A*DBM*!0]!!0]!!@U!DBM*E\"=*E\"A*E\"A*!0]!E\"=*E\"A*E\"A*DBM*"
   "!0]!DBM*E\"A*DBM*E\"A*DBM*E\"A*DBM*E\"A*DBM*E\"A*DBM*E\"=*E\"A*E\"A*E\"A*"

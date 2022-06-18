@@ -32,15 +32,33 @@ void loop() {
   clear_ball();
   bool aBr = actionOnBrique( getX(), getY());
   uint8_t aBa = actionOnBarre(getX(), getY());
+  bool loose = false;
   if ( aBr ) {
-      moveBall(true, false,0);
+      loose = moveBall(true, false,0);
   } else if ( aBa != 0 ) {
-      moveBall(true, false,aBa);    
+      loose = moveBall(true, false,aBa);    
   } else {
-      moveBall(false, false,0);
+      loose = moveBall(false, false,0);
   }
   redrawScreen();
   draw_ball();
+  // defaite ?
+  if ( loose ) {
+    if (removeVie()) {
+        started = false;
+        cleanBarre();
+        initBall();
+        resetBarre();
+        bzero(barre_old,BAR_LINE_BLOC);
+        bzero(barre_new,BAR_LINE_BLOC);
+        redrawScreen();
+    } else {
+      // Game over
+      printVie();
+      gameOver();
+      while(1);
+    }
+  }
 
   // test victoire
   bool victory = true;
@@ -49,7 +67,12 @@ void loop() {
       if ( briques_new[y][x] != 0 ) victory = false;
     }
   }
-  if ( victory ) while(1);
+  if ( victory ) {
+      printVictory();
+      while(1);
+
+    while(1);
+  }
 
   // check the bug
   int r = random(1000);
@@ -66,5 +89,6 @@ void loop() {
   }  
   bcopy(barre_new,barre_old,BAR_LINE_BLOC);
   printScore();
+  printVie();
   delay(20);
 }

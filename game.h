@@ -32,6 +32,7 @@ extern TFT_eSPI tft;
 
 void initialiseBarre();
 void control();
+void resetBarre();
 
 void initScreen();
 void redrawScreen();
@@ -42,12 +43,13 @@ void draw_ball();
 void setBallPos(uint16_t x, uint16_t y);
 void clear_ball();
 void draw_ball();
-void moveBall(bool collisionY, bool collisionX, int colType);
+bool moveBall(bool collisionY, bool collisionX, int colType);
 uint16_t getY();
 uint16_t getX();
 void draw_barreLeft(uint16_t offsetX, uint16_t offsetY);
 void draw_barreRight(uint16_t offsetX, uint16_t offsetY);
 void draw_barreMiddle(uint16_t offsetX, uint16_t offsetY);
+void cleanBarre();
 
 bool actionOnBrique(uint16_t x, uint16_t y);
 uint8_t actionOnBarre(uint16_t x, uint16_t y);
@@ -61,5 +63,9 @@ void addScore(uint32_t s);
 uint32_t getScore();
 void initScore();
 void printScore();
+bool removeVie();
+void printVie();
+void gameOver();
+void printVictory();
 
 #endif __GAME_H__
