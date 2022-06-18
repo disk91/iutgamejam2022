@@ -10,6 +10,7 @@ void setup() {
   // put your setup code here, to run once:
   initScreen();
   initBall();
+  initialiseBarre();
 }
 
 
@@ -21,13 +22,13 @@ void loop() {
 
   static uint8_t briqueOff = 1;
 
-
+/*
   bzero(barre_new,BAR_LINE_BLOC);
   for ( int i = x ; i < x+barSz ; i++ ) {
-    barre_new[i] = 1;
+    barre_new[i] = 0
   }
-
-
+*/
+  control();
 /*
   bzero(briques_new,BRIQUE_X*BRIQUE_Y);
   uint8_t *p =  (uint8_t *)briques_new;
