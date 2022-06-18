@@ -20,7 +20,7 @@ void initialiseBarre(){
 
 
 uint8_t actionOnBarre(uint16_t x, uint16_t y) {
-  if ( y+BALL_SZ < BAR_OFFSET_Y ) return 0;
+  if ( y+BALL_SZ < BAR_OFFSET_Y  ) return 0;
   int dx = (x+BALL_SZ/2) / BAR_BLOC_SZ;
   return barre_new[dx];
 }

@@ -97,11 +97,11 @@ void moveBall(bool collisionY, bool collisionX, int colType) {
   }
 
   if ( colType == 1 ) {
-    theBall.dx --;
+    theBall.dx++;
   }
 
   if ( colType == 2 ) {
-    theBall.dx ++;
+    theBall.dx--;
   }
 
   setBallPos(theBall.x+theBall.dx, theBall.y+theBall.dy);

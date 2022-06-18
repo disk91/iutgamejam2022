@@ -15,6 +15,7 @@ void setup() {
   initialiseBarre();
   
   bcopy(levels[cLev],briques_new,BRIQUE_X*BRIQUE_Y);
+  initScore();
 }
 
 
@@ -42,7 +43,7 @@ void loop() {
   draw_ball();
 
   // test victoire
-  bool victory = false;
+  bool victory = true;
   for ( int y = 0 ; y < BRIQUE_Y ; y ++ ) {
     for ( int x = 0 ; x < BRIQUE_X ; x ++ ) {
       if ( briques_new[y][x] != 0 ) victory = false;
@@ -51,7 +52,7 @@ void loop() {
   if ( victory ) while(1);
 
   // check the bug
-  int r = random(100);
+  int r = random(1000);
   if ( started && r == 0 ) {
     bcopy(briques_new,levels[cLev],BRIQUE_X*BRIQUE_Y);
     if ( cLev < 4 ) {
@@ -60,10 +61,10 @@ void loop() {
       cLev=0;
     }
     bcopy(levels[cLev],briques_new,BRIQUE_X*BRIQUE_Y);
-    bzero(briques_old,BRIQUE_X*BRIQUE_Y);
   } else {
     bcopy(briques_new,briques_old,BRIQUE_X*BRIQUE_Y);
   }  
   bcopy(barre_new,barre_old,BAR_LINE_BLOC);
+  printScore();
   delay(20);
 }
