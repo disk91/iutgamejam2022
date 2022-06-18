@@ -11,6 +11,11 @@ uint8_t cLev = 0;
 void setup() {
   // put your setup code here, to run once:
   initScreen();
+  
+  draw_splash(0,0);
+  delay(3000);
+  tft.fillScreen(TFT_BLACK);
+  
   initBall();
   initialiseBarre();
   

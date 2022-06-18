@@ -57,6 +57,8 @@ void draw_brique3(uint16_t offsetX, uint16_t offsetY);
 void draw_brique4(uint16_t offsetX, uint16_t offsetY);
 void draw_brique5(uint16_t offsetX, uint16_t offsetY);
 
+void draw_splash(uint16_t offsetX, uint16_t offsetY);
+
 void addScore(uint32_t s);
 uint32_t getScore();
 void initScore();
