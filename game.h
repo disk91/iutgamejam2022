@@ -35,7 +35,12 @@ void control();
 void initScreen();
 void redrawScreen();
 
+void initBall();
 void draw_ball();
+void setBallPos(uint16_t x, uint16_t y);
+void clear_ball();
+void draw_ball();
+void moveBall(bool collisionY, bool collisionX);
 void draw_barreLeft(uint16_t offsetX, uint16_t offsetY);
 void draw_barreRight(uint16_t offsetX, uint16_t offsetY);
 void draw_barreMiddle(uint16_t offsetX, uint16_t offsetY);
