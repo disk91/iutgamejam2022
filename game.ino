@@ -6,56 +6,64 @@ uint8_t barre_new[BAR_LINE_BLOC]  = { 0 };
 uint8_t briques_old[BRIQUE_Y][BRIQUE_X] = { 0 };
 uint8_t briques_new[BRIQUE_Y][BRIQUE_X] = { 0 };
 
+bool started = false;
+uint8_t cLev = 0;
 void setup() {
   // put your setup code here, to run once:
   initScreen();
   initBall();
   initialiseBarre();
+  
+  bcopy(levels[cLev],briques_new,BRIQUE_X*BRIQUE_Y);
 }
 
 
 
 void loop() { 
-  static uint8_t x = 0;
-  static uint8_t dir=0;
-  static uint8_t barSz=4;
 
-  static uint8_t briqueOff = 1;
 
-/*
-  bzero(barre_new,BAR_LINE_BLOC);
-  for ( int i = x ; i < x+barSz ; i++ ) {
-    barre_new[i] = 0
+  if ( !started && (digitalRead(WIO_5S_LEFT) == LOW || digitalRead(WIO_5S_RIGHT) == LOW || digitalRead(WIO_5S_PRESS) == LOW) ) {
+    startBall();
+    started = true;
   }
-*/
   control();
-/*
-  bzero(briques_new,BRIQUE_X*BRIQUE_Y);
-  uint8_t *p =  (uint8_t *)briques_new;
-  for ( int i = 0; i < briqueOff ; i++ ) {
-    *p = random(3);
-    p++;  
-  }
-  */
-  bcopy(levels[0],briques_new,BRIQUE_X*BRIQUE_Y);
-
+  
   clear_ball();
+  bool aBr = actionOnBrique( getX(), getY());
+  uint8_t aBa = actionOnBarre(getX(), getY());
+  if ( aBr ) {
+      moveBall(true, false,0);
+  } else if ( aBa != 0 ) {
+      moveBall(true, false,aBa);    
+  } else {
+      moveBall(false, false,0);
+  }
   redrawScreen();
-  moveBall(false, false);
-  //setBallPos(100+random(100)-50, 120+random(200)-100);
   draw_ball();
 
-  
-  if ( x < (BAR_LINE_BLOC-barSz) && dir == 0) x++;
-  if ( x == (BAR_LINE_BLOC-barSz) && dir == 0 ) { x--; dir = 1; }
-  if ( x > 0 && dir == 1 ) x--;
-  if ( x == 0 && dir == 1 ) { x++ ; dir = 0; }
+  // test victoire
+  bool victory = false;
+  for ( int y = 0 ; y < BRIQUE_Y ; y ++ ) {
+    for ( int x = 0 ; x < BRIQUE_X ; x ++ ) {
+      if ( briques_new[y][x] != 0 ) victory = false;
+    }
+  }
+  if ( victory ) while(1);
 
+  // check the bug
+  int r = random(100);
+  if ( started && r == 0 ) {
+    bcopy(briques_new,levels[cLev],BRIQUE_X*BRIQUE_Y);
+    if ( cLev < 4 ) {
+      cLev++; 
+    } else {
+      cLev=0;
+    }
+    bcopy(levels[cLev],briques_new,BRIQUE_X*BRIQUE_Y);
+    bzero(briques_old,BRIQUE_X*BRIQUE_Y);
+  } else {
+    bcopy(briques_new,briques_old,BRIQUE_X*BRIQUE_Y);
+  }  
   bcopy(barre_new,barre_old,BAR_LINE_BLOC);
-  bcopy(briques_new,briques_old,BRIQUE_X*BRIQUE_Y);
-  if ( briqueOff == BRIQUE_X*BRIQUE_Y ) briqueOff = 0;
-  briqueOff++;
-
-
   delay(20);
 }

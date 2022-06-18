@@ -21,7 +21,7 @@
 #define BRIQUE_X     ( SCREEN_X / BRIQUE_BLOC_X )
 #define BRIQUE_Y     ( BRIQUE_SZ_Y / BRIQUE_BLOC_Y )
 
-#define BALL_SZ 10
+#define BALL_SZ   10
 
 extern uint8_t barre_old[BAR_LINE_BLOC];
 extern uint8_t barre_new[BAR_LINE_BLOC];
@@ -37,15 +37,20 @@ void initScreen();
 void redrawScreen();
 
 void initBall();
+void startBall();
 void draw_ball();
 void setBallPos(uint16_t x, uint16_t y);
 void clear_ball();
 void draw_ball();
-void moveBall(bool collisionY, bool collisionX);
+void moveBall(bool collisionY, bool collisionX, int colType);
+uint16_t getY();
+uint16_t getX();
 void draw_barreLeft(uint16_t offsetX, uint16_t offsetY);
 void draw_barreRight(uint16_t offsetX, uint16_t offsetY);
 void draw_barreMiddle(uint16_t offsetX, uint16_t offsetY);
 
+bool actionOnBrique(uint16_t x, uint16_t y);
+uint8_t actionOnBarre(uint16_t x, uint16_t y);
 void draw_brique1(uint16_t offsetX, uint16_t offsetY);
 void draw_brique2(uint16_t offsetX, uint16_t offsetY);
 void draw_brique3(uint16_t offsetX, uint16_t offsetY);

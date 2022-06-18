@@ -1,6 +1,8 @@
 #include "Arduino.h"
 #include "level.h"
 
+uint8_t meta[3][BRIQUE_Y][BRIQUE_X] = { 0 }; 
+
 
 uint8_t levels[][BRIQUE_Y][BRIQUE_X] = { // 10 x 12
     {//level 0
@@ -17,7 +19,6 @@ uint8_t levels[][BRIQUE_Y][BRIQUE_X] = { // 10 x 12
       { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
       { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
     },
-
     {//level 1
       { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
       { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
