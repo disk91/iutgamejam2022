@@ -51,5 +51,10 @@ void draw_barreMiddle(uint16_t offsetX, uint16_t offsetY);
 
 bool actionOnBrique(uint16_t x, uint16_t y);
 uint8_t actionOnBarre(uint16_t x, uint16_t y);
+void draw_brique1(uint16_t offsetX, uint16_t offsetY);
+void draw_brique2(uint16_t offsetX, uint16_t offsetY);
+void draw_brique3(uint16_t offsetX, uint16_t offsetY);
+void draw_brique4(uint16_t offsetX, uint16_t offsetY);
+void draw_brique5(uint16_t offsetX, uint16_t offsetY);
 
 #endif __GAME_H__

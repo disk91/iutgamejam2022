@@ -37,7 +37,33 @@ void drawBarSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
 }
 
 void drawBriqueSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
-  if ( sprite != 0 ) {
+  switch ( sprite ) {
+    case 1:
+      draw_brique1(offsetX, offsetY);
+      break;
+      
+    case 2:
+      draw_brique2(offsetX, offsetY);
+      break;
+      
+    case 3:
+      draw_brique3(offsetX, offsetY);
+      break;
+      
+    case 4:
+      draw_brique4(offsetX, offsetY);
+      break;
+      
+    case 5:
+      draw_brique5(offsetX, offsetY);
+      break;
+  }
+
+
+
+
+  
+  /*if ( sprite != 0 ) {
     for ( int y = offsetY ; y < offsetY + BRIQUE_BLOC_Y -1 ; y++ ) {
       for ( int x = offsetX+1 ; x < offsetX + BRIQUE_BLOC_X -1 ; x++ ) {
         if ( sprite == 1 ) {
@@ -47,7 +73,7 @@ void drawBriqueSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
         }
       }
     }
-  }
+  }*/
 }
 
 void redrawScreen() {
