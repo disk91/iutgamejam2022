@@ -39,9 +39,13 @@ void drawBarSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
 
 void drawBriqueSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
   if ( sprite != 0 ) {
-    for ( int y = offsetY ; y < offsetY + BRIQUE_BLOC_Y ; y++ ) {
-      for ( int x = offsetX ; x < offsetX + BRIQUE_BLOC_X ; x++ ) {
-         tft.drawPixel(x,y,TFT_GREEN);
+    for ( int y = offsetY ; y < offsetY + BRIQUE_BLOC_Y -1 ; y++ ) {
+      for ( int x = offsetX+1 ; x < offsetX + BRIQUE_BLOC_X -1 ; x++ ) {
+        if ( sprite == 1 ) {
+          tft.drawPixel(x,y,TFT_GREEN);
+        } else {
+          tft.drawPixel(x,y,TFT_BLUE);
+        }
       }
     }
   }
@@ -54,6 +58,18 @@ void redrawScreen() {
       // need to redraw - clean previous pixels
       tft.fillRect( i* BAR_BLOC_SZ, BAR_OFFSET_Y, BAR_BLOC_SZ, BAR_BLOC_SZY,TFT_BLACK);
       drawBarSprite(barre_new[i],i* BAR_BLOC_SZ, BAR_OFFSET_Y);
+    }
+  }
+  // briques
+  for ( int y = 0 ; y < BRIQUE_Y ; y ++ ) {
+    for ( int x = 0 ; x < BRIQUE_X ; x ++ ) {
+      if ( briques_new[y][x] != briques_old[y][x] ) {
+        // need to redraw - clean previous pixels
+        int _x = x* BRIQUE_BLOC_X;
+        int _y = BRIQUE_OFFSET_Y+y*(BRIQUE_BLOC_Y);
+        tft.fillRect( _x, _y, BRIQUE_BLOC_X, BRIQUE_BLOC_Y,TFT_BLACK);
+        drawBriqueSprite(briques_new[y][x],_x,_y);
+      }
     }
   }
 }

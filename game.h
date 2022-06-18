@@ -1,6 +1,9 @@
+#include "TFT_eSPI.h"
+
 
 #ifndef __GAME_H__
 #define __GAME_H__
+
 
 #define SCREEN_X  320
 #define SCREEN_Y  220
@@ -10,7 +13,8 @@
 #define BAR_BLOC_SZY  10
 #define BAR_LINE_BLOC (SCREEN_X / BAR_BLOC_SZ)
 
-#define BRIQUE_SZ_Y   200
+#define BRIQUE_OFFSET_Y 20
+#define BRIQUE_SZ_Y   120
 #define BRIQUE_BLOC_X 32
 #define BRIQUE_BLOC_Y 10
 #define BRIQUE_X     ( SCREEN_X / BRIQUE_BLOC_X )
@@ -22,8 +26,12 @@ extern uint8_t barre_new[BAR_LINE_BLOC];
 extern uint8_t briques_old[BRIQUE_Y][BRIQUE_X];
 extern uint8_t briques_new[BRIQUE_Y][BRIQUE_X];
 
+extern TFT_eSPI tft;
+
 
 void initScreen();
 void redrawScreen();
+
+void draw_ball();
 
 #endif __GAME_H__
