@@ -12,6 +12,7 @@
 #define BAR_BLOC_SZ   8
 #define BAR_BLOC_SZY  10
 #define BAR_LINE_BLOC (SCREEN_X / BAR_BLOC_SZ)
+#define BAR_SIZE 4
 
 #define BRIQUE_OFFSET_Y 20
 #define BRIQUE_SZ_Y   120
@@ -28,10 +29,15 @@ extern uint8_t briques_new[BRIQUE_Y][BRIQUE_X];
 
 extern TFT_eSPI tft;
 
+void initialiseBarre();
+void control();
 
 void initScreen();
 void redrawScreen();
 
 void draw_ball();
+void draw_barreLeft(uint16_t offsetX, uint16_t offsetY);
+void draw_barreRight(uint16_t offsetX, uint16_t offsetY);
+void draw_barreMiddle(uint16_t offsetX, uint16_t offsetY);
 
 #endif __GAME_H__
