@@ -28,13 +28,28 @@ extern uint8_t briques_new[BRIQUE_Y][BRIQUE_X] = { 0 };
 
 
 void drawBarSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
+  switch ( sprite ) {
+    case 1 :
+        draw_barreLeft(offsetX, offsetY);
+        break;
+
+    case 2 :
+        draw_barreRight(offsetX, offsetY);
+        break;
+
+    case 3 :
+        draw_barreMiddle(offsetX, offsetY);
+        break;
+  }
+
+  /*
   if ( sprite != 0 ) {
     for ( int y = offsetY ; y < offsetY + BAR_BLOC_SZY ; y++ ) {
       for ( int x = offsetX ; x < offsetX + BAR_BLOC_SZ ; x++ ) {
          tft.drawPixel(x,y,TFT_WHITE);
       }
     }
-  }
+  }*/
 }
 
 void drawBriqueSprite(uint8_t sprite,uint16_t offsetX, uint16_t offsetY) {
