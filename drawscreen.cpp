@@ -107,13 +107,13 @@ void gameOver() {
   tft.fillRect( 0, BRIQUE_OFFSET_Y, 320, 240-BRIQUE_OFFSET_Y,TFT_BLACK);
   tft.setTextColor(TFT_WHITE);
   tft.setTextSize(4);
-  tft.drawString("GAME OVER",20, 100, 1);    
+  tft.drawString("GAME OVER",60, 100, 1);    
 }
 
 void printVictory() {
   tft.fillRect( 0, BRIQUE_OFFSET_Y, 320, 240-BRIQUE_OFFSET_Y,TFT_BLACK);
   tft.setTextColor(TFT_WHITE);
   tft.setTextSize(4);
-  tft.drawString("VICTORY !",20, 100, 1);    
+  tft.drawString("VICTORY !",60, 100, 1);    
 
 }

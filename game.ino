@@ -75,8 +75,6 @@ void loop() {
   if ( victory ) {
       printVictory();
       while(1);
-
-    while(1);
   }
 
   // check the bug
